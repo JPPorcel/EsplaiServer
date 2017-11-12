@@ -37,7 +37,7 @@
       apt: pkg=mysql-server state=present
     
     - name: Clone repo
-      git: repo=https://github.com/JPPorcel/ServerMusic.git dest=/opt/app version=HEAD
+      git: repo=https://github.com/JPPorcel/EsplaiServer.git dest=/opt/app version=HEAD
       
     - name: Install dependencies with npm
       shell: "cd /opt/app && sudo npm install"
