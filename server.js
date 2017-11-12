@@ -9,7 +9,7 @@ var express = require("express"),
 var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'root',
+	password : '',
 	database : 'Esplai'
 });
 
@@ -167,27 +167,24 @@ router.post('/users/create', function(req, res)
 	var apellidos = mysql.escape(req.body.apellidos);
 	var telefono = mysql.escape(req.body.telefono);
 
-	connection.query("insert into Usuarios set correo='" + correo + "', telefono='" + telefono + ", nombre='" + nombre + ", apellidos='" + apellidos + "'", function (err, rows)
+	connection.query("insert into Usuarios set correo=" + correo + ", telefono=" + telefono + ", nombre=" + nombre + ", apellidos=" + apellidos, function (err, result)
 	{
 		if(err)
 			throw err;
 		
 		res.set({ 'content-type': 'application/json; charset=utf-8' });
-		res.send("{'code': '20', 'message': 'ok'}");
+		res.send("{'code': '20', 'message': '"+result.insertId+"'}");
 	});
 });
 
 router.post('/users/update', function(req, res)
 {	
 	var id = mysql.escape(req.body.id);
-    var correo = mysql.escape(req.body.correo);
 	var nombre = mysql.escape(req.body.nombre);
 	var apellidos = mysql.escape(req.body.apellidos);
 	var telefono = mysql.escape(req.body.telefono);
 	var imagen = mysql.escape(req.body.imagen);
-	var interes1 = mysql.escape(req.body.interes1);
-	var interes2 = mysql.escape(req.body.interes2);
-	var interes3 = mysql.escape(req.body.interes3);
+	var interes1 = mysql.escape(req.body.porque);
     
     connection.query("select id from Usuarios where id="+mysql.escape(req.params.filtro),function(err,rows){
 		if(err) 
@@ -195,7 +192,7 @@ router.post('/users/update', function(req, res)
         
         if(rows.length == 1)
 		{
-            connection.query("update Usuarios correo='" + correo + "', telefono='" + telefono + ", nombre='" + nombre + ", apellidos='" + apellidos + "', imagen='" + imagen + "', interes1='" + interes1 + "', interes2='" + interes2 + "', interes3='" + interes3 + "' where id='" + id + "'", function (err, rows)
+            connection.query("update Usuarios telefono=" + telefono + ", nombre=" + nombre + ", apellidos=" + apellidos + ", interes1=" + interes1 + " where id=" + id, function (err, rows)
             {
                 if(err)
                     throw err;
