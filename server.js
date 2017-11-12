@@ -77,7 +77,7 @@ router.get('/db', function(req, res)
                         if(err)
                             throw err;
                         
-                        result = '{"programa":' + JSON.stringify(programa) + ', "fundacion":' + JSON.stringify(fundacion) + ', "espacios":' + JSON.stringify(espacios) + ', "actividades":' + JSON.stringify(actividades) + ', "actualizar":' + JSON.stringify(actualizar) +'}'
+                        result = '{"Programa":' + JSON.stringify(programa) + ', "Fundacion":' + JSON.stringify(fundacion) + ', "Espacios":' + JSON.stringify(espacios) + ', "Actividades":' + JSON.stringify(actividades) + ', "Actualizar":' + JSON.stringify(actualizar) +'}'
                         
                         res.set({ 'content-type': 'application/json; charset=utf-8' });
                         res.send(String(result));
@@ -110,7 +110,7 @@ router.get('/db/:table', function(req, res)
             if(err)
                 throw err;
             
-            result = '{"tabla":' + JSON.stringify(tabla) + ', "actualizar":' + JSON.stringify(actualizar) +'}'
+            result = '{"tabla":' + JSON.stringify(tabla) + ', "Actualizar":' + JSON.stringify(actualizar) +'}'
             
             res.set({ 'content-type': 'application/json; charset=utf-8' });
             res.send(String(result));
@@ -162,17 +162,12 @@ router.get('/users/filter/:filtro', function(req, res)
 
 router.post('/users/create', function(req, res)
 {	
-	var id = getHashKey();
     var correo = mysql.escape(req.body.correo);
 	var nombre = mysql.escape(req.body.nombre);
 	var apellidos = mysql.escape(req.body.apellidos);
 	var telefono = mysql.escape(req.body.telefono);
-	var imagen = mysql.escape(req.body.imagen);
-	var interes1 = mysql.escape(req.body.interes1);
-	var interes2 = mysql.escape(req.body.interes2);
-	var interes3 = mysql.escape(req.body.interes3);
 
-	connection.query("insert into Usuarios set id='" + id + "', correo='" + correo + "', telefono='" + telefono + ", nombre='" + nombre + ", apellidos='" + apellidos + ", imagen='" + imagen + "', interes1='" + interes1 + "', interes2='" + interes2 + "', interes3='" + interes3 + "'", function (err, rows)
+	connection.query("insert into Usuarios set correo='" + correo + "', telefono='" + telefono + ", nombre='" + nombre + ", apellidos='" + apellidos + "'", function (err, rows)
 	{
 		if(err)
 			throw err;
@@ -200,7 +195,7 @@ router.post('/users/update', function(req, res)
         
         if(rows.length == 1)
 		{
-            connection.query("update Usuarios correo='" + correo + "', telefono='" + telefono + ", nombre='" + nombre + ", apellidos='" + apellidos + ", imagen='" + imagen + "', interes1='" + interes1 + "', interes2='" + interes2 + "', interes3='" + interes3 + "' where id='" + id + "'", function (err, rows)
+            connection.query("update Usuarios correo='" + correo + "', telefono='" + telefono + ", nombre='" + nombre + ", apellidos='" + apellidos + "', imagen='" + imagen + "', interes1='" + interes1 + "', interes2='" + interes2 + "', interes3='" + interes3 + "' where id='" + id + "'", function (err, rows)
             {
                 if(err)
                     throw err;
