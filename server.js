@@ -202,7 +202,7 @@ router.post('/users/update', function(req, res)
                 res.send("{'code': '20', 'message': 'ok'}");
             });
         }
-        lse
+        else
 		{
 			res.set({ 'content-type': 'application/json; charset=utf-8' });
             res.send("{'code': '43', 'message': 'user does not exists'}");
