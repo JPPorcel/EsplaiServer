@@ -187,7 +187,7 @@ router.post('/users/update', function(req, res)
 	var imagen = mysql.escape(req.body.imagen);
 	var interes1 = mysql.escape(req.body.porque);
     
-    connection.query("select id from Usuarios where id="+mysql.escape(req.params.filtro),function(err,rows){
+    connection.query("select id from Usuarios where id="+id,function(err,rows){
 		if(err) 
 			throw err;
         
