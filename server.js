@@ -193,7 +193,7 @@ router.post('/users/update', function(req, res)
         
         if(rows.length == 1)
 		{
-            connection.query("update Usuarios telefono=" + telefono + ", nombre=" + nombre + ", apellidos=" + apellidos + ", interes1=" + interes1 + " where id=" + id, function (err, rows)
+            connection.query("update Usuarios set telefono=" + telefono + ", nombre=" + nombre + ", apellidos=" + apellidos + ", interes1=" + interes1 + " where id=" + id, function (err, rows)
             {
                 if(err)
                     throw err;
