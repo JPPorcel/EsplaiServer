@@ -166,8 +166,9 @@ router.post('/users/create', function(req, res)
 	var nombre = mysql.escape(req.body.nombre);
 	var apellidos = mysql.escape(req.body.apellidos);
 	var telefono = mysql.escape(req.body.telefono);
+    var interes1 = mysql.escape(req.body.porque);
 
-	connection.query("insert into Usuarios set correo=" + correo + ", telefono=" + telefono + ", nombre=" + nombre + ", apellidos=" + apellidos, function (err, result)
+	connection.query("insert into Usuarios set correo=" + correo + ", telefono=" + telefono + ", nombre=" + nombre + ", apellidos=" + apellidos+", interes1="+interes1, function (err, result)
 	{
 		if(err)
 			throw err;
